@@ -1,0 +1,7 @@
+CREATE TABLE mined_blocks (
+  x NUMERIC NOT NULL,
+  y NUMERIC NOT NULL,
+  z NUMERIC NOT NULL,
+  material NUMERIC NOT NULL,
+  PRIMARY KEY (x,y,z)
+)

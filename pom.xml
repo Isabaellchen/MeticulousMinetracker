@@ -14,11 +14,13 @@
 		<spigot.version>1.13.2-R0.1-SNAPSHOT</spigot.version>
 		<dagger.version>2.22.1</dagger.version>
 		<jetbrains.annotations.version>17.0.0</jetbrains.annotations.version>
-		<apache.dbcp.version>2.6.0</apache.dbcp.version>
-		<mysql.connector.version>8.0.15</mysql.connector.version>
+		<hikaricp.version>3.3.1</hikaricp.version>
+		<mariadb.client.version>2.4.0</mariadb.client.version>
+		<hibernate.version>5.4.2.Final</hibernate.version>
 
 		<maven.plugin.compiler.version>3.6.1</maven.plugin.compiler.version>
 		<maven.plugin.shade.version>3.2.1</maven.plugin.shade.version>
+		<maven.plugin.flyway.version>6.0.0-beta</maven.plugin.flyway.version>
 	</properties>
 
 	<repositories>
@@ -46,14 +48,29 @@
 			<version>${jetbrains.annotations.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>${apache.dbcp.version}</version>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hikaricp.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.connector.version}</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>${mariadb.client.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+			<version>3.11.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-meta</artifactId>
+			<version>3.11.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen</artifactId>
+			<version>3.11.10</version>
 		</dependency>
 	</dependencies>
 
@@ -87,6 +104,24 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${maven.plugin.flyway.version}</version>
+				<configuration>
+					<driver>org.mariadb.jdbc.Driver</driver>
+					<url>jdbc:mariadb://localhost:3306/meticulous_minedata?useMysqlMetadata=true</url>
+					<user>meticulous_minedata</user>
+					<password>FMa=h+yT5TxL-Ufj</password>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.mariadb.jdbc</groupId>
+						<artifactId>mariadb-java-client</artifactId>
+						<version>${mariadb.client.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

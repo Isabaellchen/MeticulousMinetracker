@@ -4,20 +4,12 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import rocks.isor.meticulousminetracker.database.api.Database;
+import rocks.isor.meticulousminetracker.database.Database;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Set;
 
 public class Main extends JavaPlugin  {
-
-	@Inject
-	@Named("persistent")
-	public Database database;
 
 	@Inject
 	public Configuration configuration;
@@ -30,14 +22,7 @@ public class Main extends JavaPlugin  {
 		DaggerMainComponent.create().inject(this);
 
 		String databaseName = configuration.getString("db.database");
-
-		try (Connection connection = database.getConnection();
-			 PreparedStatement preparedStatement = connection.prepareStatement("USE " + databaseName + ';')) {
-			preparedStatement.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return;
-		}
+		Database.executeQuery("USE " + databaseName + ';');
 
 		listeners.forEach(listener -> {
 			getLogger().info("-" + listener.getClass().getSimpleName());
@@ -48,6 +33,5 @@ public class Main extends JavaPlugin  {
 	@Override
 	public void onDisable() {
 		listeners.forEach(HandlerList::unregisterAll);
-		listeners.clear();
 	}
 }
