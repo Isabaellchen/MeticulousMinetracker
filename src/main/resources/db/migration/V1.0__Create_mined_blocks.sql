@@ -3,5 +3,6 @@ CREATE TABLE mined_blocks (
   y NUMERIC NOT NULL,
   z NUMERIC NOT NULL,
   material NUMERIC NOT NULL,
+  time TIMESTAMP NOT NULL,
   PRIMARY KEY (x,y,z)
 )
