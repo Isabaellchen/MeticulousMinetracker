@@ -4,5 +4,7 @@ CREATE TABLE mined_blocks (
   z NUMERIC NOT NULL,
   material NUMERIC NOT NULL,
   time TIMESTAMP NOT NULL,
-  PRIMARY KEY (x,y,z)
+  block_id MEDIUMINT AUTO_INCREMENT,
+  PRIMARY KEY (x,y,z),
+  INDEX (block_id)
 )

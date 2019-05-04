@@ -11,7 +11,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 
-		<spigot.version>1.13.2-R0.1-SNAPSHOT</spigot.version>
+		<spigot.version>1.14-R0.1-SNAPSHOT</spigot.version>
 		<dagger.version>2.22.1</dagger.version>
 		<jetbrains.annotations.version>17.0.0</jetbrains.annotations.version>
 		<hikaricp.version>3.3.1</hikaricp.version>
@@ -58,19 +58,15 @@
 			<version>${mariadb.client.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jooq</groupId>
-			<artifactId>jooq</artifactId>
-			<version>3.11.10</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.26</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jooq</groupId>
-			<artifactId>jooq-meta</artifactId>
-			<version>3.11.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jooq</groupId>
-			<artifactId>jooq-codegen</artifactId>
-			<version>3.11.10</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.7.26</version>
 		</dependency>
 	</dependencies>
 

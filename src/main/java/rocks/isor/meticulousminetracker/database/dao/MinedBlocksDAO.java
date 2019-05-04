@@ -5,17 +5,19 @@ import rocks.isor.meticulousminetracker.database.Database;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
 @Singleton
 public class MinedBlocksDAO {
 
-	private static final String QUERY_ADD_BLOCK = "INSERT INTO mined_blocks VALUES (?,?,?,?,?);";
+	private static final String QUERY_ADD_BLOCK = "INSERT INTO mined_blocks(x,y,z,material,time) VALUES (?,?,?,?,?);";
 
 	@Inject
 	public MinedBlocksDAO() {}
 
-	public void addMinedBlock(Block block) {
-		Database.executeQuery(QUERY_ADD_BLOCK, block.getX(), block.getY(), block.getZ(), block.getType().ordinal(), new Date());
+	public long addMinedBlock(Connection connection, Block block) throws SQLException {
+		return Database.executeInsertQuery(connection, QUERY_ADD_BLOCK, block.getX(), block.getY(), block.getZ(), block.getType().ordinal(), new Date());
 	}
 }
