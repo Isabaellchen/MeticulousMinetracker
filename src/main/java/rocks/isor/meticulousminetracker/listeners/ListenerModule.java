@@ -10,7 +10,7 @@ public abstract class ListenerModule {
 
 	@Binds
 	@IntoSet
-	public abstract Listener provideBlockMiningListener(BlockMiningListener blockMiningListener);
+	public abstract Listener provideBlockMiningListener(BlockDestroyedListener blockMiningListener);
 
 	@Binds
 	@IntoSet
@@ -18,5 +18,5 @@ public abstract class ListenerModule {
 
 	@Binds
 	@IntoSet
-	public abstract Listener provideItemDestroyListener(ItemDestroyListener itemDestroyListener);
+	public abstract Listener provideItemDestroyListener(ItemDestroyedListener itemDestroyListener);
 }

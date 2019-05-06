@@ -1,4 +1,4 @@
-CREATE TABLE mined_blocks (
+CREATE TABLE block_destroyed (
   x NUMERIC NOT NULL,
   y NUMERIC NOT NULL,
   z NUMERIC NOT NULL,

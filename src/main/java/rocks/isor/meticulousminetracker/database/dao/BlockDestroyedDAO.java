@@ -10,14 +10,14 @@ import java.sql.SQLException;
 import java.util.Date;
 
 @Singleton
-public class MinedBlocksDAO {
+public class BlockDestroyedDAO {
 
 	private static final String QUERY_ADD_BLOCK = "INSERT INTO mined_blocks(x,y,z,material,time) VALUES (?,?,?,?,?);";
 
 	@Inject
-	public MinedBlocksDAO() {}
+	public BlockDestroyedDAO() {}
 
-	public long addMinedBlock(Connection connection, Block block) throws SQLException {
+	public long addBlockDestroyed(Connection connection, Block block) throws SQLException {
 		return Database.executeInsertQuery(connection, QUERY_ADD_BLOCK, block.getX(), block.getY(), block.getZ(), block.getType().ordinal(), new Date());
 	}
 }

@@ -1,0 +1,6 @@
+CREATE TABLE item_destroyed (
+  id MEDIUMINT NOT NULL AUTO_INCREMENT,
+  material NUMERIC NOT NULL,
+  amount NUMERIC NOT NULL,
+  PRIMARY KEY (id)
+)
