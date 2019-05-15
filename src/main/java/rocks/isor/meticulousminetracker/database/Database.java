@@ -129,7 +129,7 @@ public class Database {
 					count = preparedStatement.getUpdateCount();
 					if (count >= 0) {
 						resultData.put(
-								"rows affected",
+								"rows_affected",
 								count
 						);
 					}

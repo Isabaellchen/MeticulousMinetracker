@@ -8,13 +8,13 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class ItemCraftingListener implements Listener {
+public class ItemCraftedListener implements Listener {
 
 	@Inject
-	public ItemCraftingListener() {}
+	public ItemCraftedListener() {}
 
 	@EventHandler
-	public void onPrepareItemCraftEvent(PrepareItemCraftEvent event) {
+	public void on(PrepareItemCraftEvent event) {
 		System.out.println("Item crafted");
 	}
 }

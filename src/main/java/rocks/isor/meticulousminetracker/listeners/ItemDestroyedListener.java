@@ -35,8 +35,9 @@ public class ItemDestroyedListener implements Listener {
 	public void on(BlockFromToEvent event) {
 		switch (event.getBlock().getType()) {
 			case LEGACY_LAVA:
+			case LAVA:
 				bukkitScheduler.runTaskAsynchronously(plugin,
-						itemDestroyedTasks.registerNewItemDestroyedCollection(event.getToBlock().getDrops()));
+						itemDestroyedTasks.registerItemDestroyedCollection(event.getToBlock().getDrops()));
 		}
 	}
 }

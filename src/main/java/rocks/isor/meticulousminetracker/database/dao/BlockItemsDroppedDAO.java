@@ -9,12 +9,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Singleton
-public class ItemDropsDAO {
+public class BlockItemsDroppedDAO {
 
-	private static final String QUERY_ADD_ITEM_DROP = "INSERT INTO item_drops VALUES (?,?,?);";
+	private static final String QUERY_ADD_ITEM_DROP = "INSERT INTO block_items_dropped VALUES (?,?,?);";
 
 	@Inject
-	public ItemDropsDAO() {}
+	public BlockItemsDroppedDAO() {}
 
 	public void addItemDrop(Connection connection, ItemStack drop, long blockId) throws SQLException {
 		Database.executeQuery(connection, QUERY_ADD_ITEM_DROP, blockId, drop.getType().ordinal(), drop.getAmount());

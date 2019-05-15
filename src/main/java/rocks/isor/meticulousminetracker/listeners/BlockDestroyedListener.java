@@ -30,12 +30,12 @@ public class BlockDestroyedListener implements Listener {
 	@EventHandler
 	public void on(BlockBreakEvent event) {
 		bukkitScheduler.runTaskAsynchronously(plugin,
-				blockDestroyedTasks.registerNewBlockDestroyed(event.getBlock()));
+				blockDestroyedTasks.registerBlockDestroyed(event.getBlock()));
 	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void on(EntityExplodeEvent event) {
 		bukkitScheduler.runTaskAsynchronously(plugin,
-				blockDestroyedTasks.registerNewBlockDestroyedCollection(event.blockList()));
+				blockDestroyedTasks.registerBlockDestroyedCollection(event.blockList()));
 	}
 }

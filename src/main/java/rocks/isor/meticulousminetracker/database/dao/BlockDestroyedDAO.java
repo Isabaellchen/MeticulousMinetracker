@@ -12,7 +12,7 @@ import java.util.Date;
 @Singleton
 public class BlockDestroyedDAO {
 
-	private static final String QUERY_ADD_BLOCK = "INSERT INTO mined_blocks(x,y,z,material,time) VALUES (?,?,?,?,?);";
+	private static final String QUERY_ADD_BLOCK = "INSERT INTO block_destroyed(x,y,z,material,time) VALUES (?,?,?,?,?);";
 
 	@Inject
 	public BlockDestroyedDAO() {}

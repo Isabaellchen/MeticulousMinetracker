@@ -24,14 +24,14 @@ public class ItemDestroyedTasks {
 	@Inject
 	public BukkitScheduler bukkitScheduler;
 
-	public Runnable registerNewItemDestroyed(final ItemStack itemStack) {
+	public Runnable registerItemDestroyed(final ItemStack itemStack) {
 		return () -> itemDestroyedDAO.addItemDestroyed(itemStack);
 	}
 
-	public Runnable registerNewItemDestroyedCollection(final Collection<ItemStack> itemStacks) {
+	public Runnable registerItemDestroyedCollection(final Collection<ItemStack> itemStacks) {
 		return () -> {
 			for (ItemStack itemStack : itemStacks) {
-				bukkitScheduler.runTaskAsynchronously(plugin, registerNewItemDestroyed(itemStack));
+				bukkitScheduler.runTaskAsynchronously(plugin, registerItemDestroyed(itemStack));
 			}
 		};
 	}
