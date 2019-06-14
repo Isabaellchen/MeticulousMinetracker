@@ -6,6 +6,7 @@ CREATE TABLE block_destroyed (
   material NUMERIC NOT NULL,
   time TIMESTAMP NOT NULL,
   block_id BIGINT UNIQUE AUTO_INCREMENT,
+  world VARCHAR(32) NOT NULL,
   is_restored BOOL NOT NULL,
 
   PRIMARY KEY (x,y,z),

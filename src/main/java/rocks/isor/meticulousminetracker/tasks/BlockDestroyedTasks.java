@@ -17,8 +17,7 @@ import java.util.Collection;
 public class BlockDestroyedTasks {
 
 	@Inject
-	public BlockDestroyedTasks() {
-	}
+	public BlockDestroyedTasks() {}
 
 	@Inject
 	public BlockDestroyedDAO minedBlocksDAO;
@@ -49,11 +48,15 @@ public class BlockDestroyedTasks {
 		});
 	}
 
-	public Runnable registerBlockDestroyedCollection(final Collection<Block> blocks) {
+	public Runnable registerBlockDestroyed(final Collection<Block> blocks) {
 		return () -> {
 			for (Block block : blocks) {
 				bukkitScheduler.runTaskAsynchronously(plugin, registerBlockDestroyed(block));
 			}
 		};
+	}
+
+	public Runnable registerBlockDestroyedByLava(final Block toBlock, final int materialOrdinal) {
+		return () -> blockPlacedDAO.deletePlacedBlock(toBlock, materialOrdinal);
 	}
 }

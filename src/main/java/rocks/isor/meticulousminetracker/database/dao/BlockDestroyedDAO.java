@@ -12,12 +12,21 @@ import java.util.Date;
 @Singleton
 public class BlockDestroyedDAO {
 
-	private static final String QUERY_ADD_BLOCK = "INSERT INTO block_destroyed(x,y,z,material,time) VALUES (?,?,?,?,?);";
+	private static final String QUERY_ADD_BLOCK =
+			"INSERT INTO block_destroyed(x,y,z,material,time,world,is_restored) VALUES (?,?,?,?,?,?,?);";
+
+	private static final String QUERY_CLEAN_BLOCKS =
+			"DELETE FROM block_destroyed WHERE is_restored = ?;";
 
 	@Inject
 	public BlockDestroyedDAO() {}
 
 	public long addBlockDestroyed(Connection connection, Block block) throws SQLException {
-		return Database.executeInsertQuery(connection, QUERY_ADD_BLOCK, block.getX(), block.getY(), block.getZ(), block.getType().ordinal(), new Date());
+		return Database.executeInsertQuery(connection, QUERY_ADD_BLOCK,
+				block.getX(), block.getY(), block.getZ(), block.getType().ordinal(), new Date(), block.getWorld().getUID(), false);
+	}
+
+	public void cleanDestroyedBlocks() {
+		Database.executeQuery(QUERY_CLEAN_BLOCKS, true);
 	}
 }

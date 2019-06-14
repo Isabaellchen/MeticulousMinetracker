@@ -2,8 +2,9 @@ package rocks.isor.meticulousminetracker.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockFromToEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import rocks.isor.meticulousminetracker.tasks.ItemDestroyedTasks;
@@ -27,17 +28,23 @@ public class ItemDestroyedListener implements Listener {
 	public ItemDestroyedTasks itemDestroyedTasks;
 
 	@EventHandler
-	public void onEntityDeathEvent(EntityDeathEvent event) {
-		System.out.println("Item died");
+	public void on(EntityDeathEvent e) {
+		bukkitScheduler.runTaskAsynchronously(plugin,
+				itemDestroyedTasks.registerItemDestroyed(e.getDrops()));
 	}
 
 	@EventHandler
-	public void on(BlockFromToEvent event) {
-		switch (event.getBlock().getType()) {
-			case LEGACY_LAVA:
-			case LAVA:
-				bukkitScheduler.runTaskAsynchronously(plugin,
-						itemDestroyedTasks.registerItemDestroyedCollection(event.getToBlock().getDrops()));
+	public void on(ItemDespawnEvent e) {
+		if (!e.isCancelled()) {
+			bukkitScheduler.runTaskAsynchronously(plugin,
+					itemDestroyedTasks.registerItemDestroyed(e.getEntity().getItemStack()));
+		}
+	}
+
+	@EventHandler
+	public void on(EntityDamageEvent e) {
+		if (!e.isCancelled()) {
+
 		}
 	}
 }

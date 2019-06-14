@@ -28,7 +28,7 @@ public class ItemDestroyedTasks {
 		return () -> itemDestroyedDAO.addItemDestroyed(itemStack);
 	}
 
-	public Runnable registerItemDestroyedCollection(final Collection<ItemStack> itemStacks) {
+	public Runnable registerItemDestroyed(final Collection<ItemStack> itemStacks) {
 		return () -> {
 			for (ItemStack itemStack : itemStacks) {
 				bukkitScheduler.runTaskAsynchronously(plugin, registerItemDestroyed(itemStack));

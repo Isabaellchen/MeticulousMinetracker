@@ -1,13 +1,14 @@
 CREATE TABLE block_placed (
 
+  block_id BIGINT UNIQUE AUTO_INCREMENT,
   x NUMERIC NOT NULL,
   y NUMERIC NOT NULL,
   z NUMERIC NOT NULL,
   material NUMERIC NOT NULL,
   time TIMESTAMP NOT NULL,
-  block_id BIGINT UNIQUE AUTO_INCREMENT,
+  world VARCHAR(32) NOT NULL,
   is_destroyed BOOL NOT NULL,
 
-  PRIMARY KEY (x,y,z),
-  INDEX (block_id)
+  PRIMARY KEY (block_id),
+  INDEX (x,y,z)
 );
